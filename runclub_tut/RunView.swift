@@ -6,6 +6,15 @@
 //
 
 import SwiftUI
+import AudioToolbox
+
+func seconds_to_timer(totalSeconds: Int) -> String {
+    let totalMinutes = totalSeconds / 60
+    let totalHours =  totalMinutes / 60
+    let remainingMinutes = totalMinutes % 60
+    let remainingSeconds = totalSeconds % 60
+    return String(format: "%01d:%02d:%02d", totalHours, remainingMinutes, remainingSeconds)
+}
 
 struct RunView: View {
     @EnvironmentObject var runTracker: RunTracker
@@ -13,7 +22,7 @@ struct RunView: View {
         VStack{
             HStack{
                 VStack{
-                    Text("\(runTracker.distance) meters")
+                    Text("\(runTracker.distance, specifier: "%.2f") meters")
                         .font(.title3)
                         .bold()
                     Text("Distance")
@@ -24,7 +33,7 @@ struct RunView: View {
                 }
                 .frame(maxWidth: .infinity)
                 VStack{
-                    Text("\(runTracker.pace) km/minute")
+                    Text("\(runTracker.pace, specifier: "%.2f") minute per km")
                         .font(.title3)
                         .bold()
                     Text("Pace")
@@ -33,7 +42,7 @@ struct RunView: View {
             }
             
             VStack {
-                Text("\(runTracker.elapsedTime)")
+                Text("\(seconds_to_timer(totalSeconds: runTracker.elapsedTime))")
                     .font(.system(size:64))
                 Text("Time")
                     .foregroundStyle(.gray)
@@ -41,7 +50,7 @@ struct RunView: View {
             .frame(maxHeight: .infinity)
             HStack{
                 Button {
-                    
+                    runTracker.pauseRun()
                 } label: {
                     Image(systemName: "pause.fill")
                         .font(.largeTitle)
@@ -52,6 +61,7 @@ struct RunView: View {
                     
                 }
                 .frame(maxWidth:.infinity)
+                
                 Button {
                     
                 } label: {
@@ -64,6 +74,11 @@ struct RunView: View {
                     
                 }
                 .frame(maxWidth:.infinity)
+                .simultaneousGesture(LongPressGesture().onEnded({_ in
+                    runTracker.stopRun()
+                    AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {   }
+
+                }))
             }
             
             
@@ -75,4 +90,5 @@ struct RunView: View {
 
 #Preview {
     RunView()
+        .environmentObject(RunTracker())
 }

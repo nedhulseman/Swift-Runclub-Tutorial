@@ -19,7 +19,7 @@ final class AuthService {
     private var supabase = SupabaseClient(supabaseURL: Secrets.supabaseURL!, supabaseKey: Secrets.supabaseKey)
     
     var currentSession: Session?
-    private init () {}
+    private init () { Task { currentSession = try? await supabase.auth.session } }
     
     func magicLinkLogin(email: String) async throws {
         try await supabase.auth.signInWithOTP(
@@ -29,5 +29,10 @@ final class AuthService {
     }
     func handleOpenURL(url: URL) async throws {
         currentSession = try await supabase.auth.session(from: url)
+    }
+    
+    func logout() async throws {
+        try await supabase.auth.signOut()
+        currentSession = nil
     }
 }

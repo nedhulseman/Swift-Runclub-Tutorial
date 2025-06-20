@@ -11,7 +11,7 @@ import SwiftUI
 struct runclub_tutApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            ContentView()
         }
     }
 }

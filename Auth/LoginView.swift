@@ -41,7 +41,13 @@ struct LoginView: View {
         }
         .padding()
         .onOpenURL(perform: {url in
-            
+            Task {
+                do {
+                    try await AuthService.shared.handleOpenURL(url: url)
+                } catch{
+                    print(error.localizedDescription)
+                }
+            }
         })
     }
 }

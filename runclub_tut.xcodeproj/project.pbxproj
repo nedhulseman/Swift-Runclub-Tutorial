@@ -20,6 +20,7 @@
 		0F85480C2D3C33CD00DFCD31 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85480B2D3C33CD00DFCD31 /* RunView.swift */; };
 		0FE69DCA2DFB1F8600F6C7C4 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 0FE69DC92DFB1F8600F6C7C4 /* Supabase */; };
 		0FE69DCC2DFB1FEE00F6C7C4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE69DCB2DFB1FEE00F6C7C4 /* AuthService.swift */; };
+		0FE69DD02E044BC200F6C7C4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE69DCF2E044BC200F6C7C4 /* LoginView.swift */; };
 		0FE7BDA42D2DD21400CC1334 /* RunClubTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE7BDA32D2DD21400CC1334 /* RunClubTabView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		0F8548092D39CA0800DFCD31 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		0F85480B2D3C33CD00DFCD31 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		0FE69DCB2DFB1FEE00F6C7C4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		0FE69DCD2E044B1A00F6C7C4 /* runclub-tut-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "runclub-tut-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0FE69DCF2E044BC200F6C7C4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0FE7BDA32D2DD21400CC1334 /* RunClubTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunClubTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,7 +91,7 @@
 		0F15BF172D284F9F003A77FE = {
 			isa = PBXGroup;
 			children = (
-				0FE69DCB2DFB1FEE00F6C7C4 /* AuthService.swift */,
+				0FE69DCE2E044B8700F6C7C4 /* Auth */,
 				0F15BF222D284FA0003A77FE /* runclub_tut */,
 				0F15BF332D284FA1003A77FE /* runclub_tutTests */,
 				0F15BF3D2D284FA1003A77FE /* runclub_tutUITests */,
@@ -109,6 +112,7 @@
 		0F15BF222D284FA0003A77FE /* runclub_tut */ = {
 			isa = PBXGroup;
 			children = (
+				0FE69DCD2E044B1A00F6C7C4 /* runclub-tut-Info.plist */,
 				0F15BF232D284FA0003A77FE /* runclub_tutApp.swift */,
 				0F13123F2D2B47ED00FB6866 /* HomeView.swift */,
 				0F15BF252D284FA0003A77FE /* ContentView.swift */,
@@ -145,6 +149,15 @@
 				0F15BF402D284FA1003A77FE /* runclub_tutUITestsLaunchTests.swift */,
 			);
 			path = runclub_tutUITests;
+			sourceTree = "<group>";
+		};
+		0FE69DCE2E044B8700F6C7C4 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0FE69DCB2DFB1FEE00F6C7C4 /* AuthService.swift */,
+				0FE69DCF2E044BC200F6C7C4 /* LoginView.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +296,7 @@
 				0FE7BDA42D2DD21400CC1334 /* RunClubTabView.swift in Sources */,
 				0F85480A2D39CA0800DFCD31 /* CountdownView.swift in Sources */,
 				0F85480C2D3C33CD00DFCD31 /* RunView.swift in Sources */,
+				0FE69DD02E044BC200F6C7C4 /* LoginView.swift in Sources */,
 				0F1312402D2B47ED00FB6866 /* HomeView.swift in Sources */,
 				0F15BF262D284FA0003A77FE /* ContentView.swift in Sources */,
 				0F15BF242D284FA0003A77FE /* runclub_tutApp.swift in Sources */,
@@ -454,6 +468,7 @@
 				DEVELOPMENT_TEAM = X37GQ9URU7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "runclub-tut-Info.plist";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow access to enjoy our application";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Please allow access to enjoy our application";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow access to enjoy our application";
@@ -486,6 +501,7 @@
 				DEVELOPMENT_TEAM = X37GQ9URU7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "runclub-tut-Info.plist";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow access to enjoy our application";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Please allow access to enjoy our application";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow access to enjoy our application";

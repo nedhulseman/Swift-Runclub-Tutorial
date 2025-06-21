@@ -76,6 +76,18 @@ class RunTracker: NSObject, ObservableObject, CLLocationManagerDelegate {
         distance = 0.0
         pace = 0.0
         elapsedTime = 0
+        
+        func postToDatabase() {
+            Task {
+                do {
+                    guard let userId = AuthService.shared.currentSession?.user.id else { return }
+                    let run = RunPayload(createdAt: Date.now, distance: distance, pace: pace, time: elapsedTime, userId: <#T##UUID#>)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
     }
     func pauseRun(){
         presentPauseView = true

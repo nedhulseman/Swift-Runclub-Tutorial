@@ -19,6 +19,8 @@ class RunTracker: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var elapsedTime = 0
     @Published var presentRunView = false
     @Published var presentPauseView = false
+    @Published var locationPath: [CLLocationCoordinate2D] = []
+
     
     private var timer: Timer?
     
@@ -50,12 +52,13 @@ class RunTracker: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager?.startUpdatingLocation()
     }
     func startRun() {
+        presentRunView = true
         isRunning = true
         startLocation = nil
         lastLocation = nil
         distance = 0.0
         pace = 0.0
-        presentRunView = true
+        elapsedTime = 0
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] _ in
             guard let self else { return }
             self.elapsedTime += 1
@@ -68,27 +71,15 @@ class RunTracker: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     func stopRun(){
         isRunning = false
+        presentRunView = false
         presentPauseView = false
         locationManager?.stopUpdatingLocation()
         timer?.invalidate()
         timer = nil
-        presentRunView = false
-        distance = 0.0
-        pace = 0.0
-        elapsedTime = 0
-        
-        func postToDatabase() {
-            Task {
-                do {
-                    guard let userId = AuthService.shared.currentSession?.user.id else { return }
-                    let run = RunPayload(createdAt: Date.now, distance: distance, pace: pace, time: elapsedTime, userId: <#T##UUID#>)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-        
+        postToDatabase()
+
     }
+
     func pauseRun(){
         presentPauseView = true
         presentRunView = false
@@ -109,13 +100,29 @@ class RunTracker: NSObject, ObservableObject, CLLocationManagerDelegate {
                 pace = (Double(self.elapsedTime) / 60)  / (self.distance / 1000)
             }
         }
+        
         locationManager?.startUpdatingLocation()
     }
+    func postToDatabase() {
+        Task {
+            do {
+                guard let userId = AuthService.shared.currentSession?.user.id else { return }
+                let run = RunPayload(createdAt: Date.now, distance: self.distance, pace: self.pace, time: self.elapsedTime, userId: userId)
+                try await DatabaseService.shared.saveWorkout(run: run)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
 }
 
 extension RunTracker {
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
+        let coordinate = location.coordinate
+        locationPath.append(coordinate)
 
         // Update the map camera position
         cameraPosition = .region(
@@ -162,6 +169,7 @@ extension RunTracker {
 // --> https://stackoverflow.com/questions/73813978/model-updates-trigger-publishing-changes-from-within-view-updates-is-not-allowe
 struct AreaMap: View {
     @Binding var cameraPosition: MapCameraPosition
+    @ObservedObject var runTracker: RunTracker
 
     var body: some View {
         Map(position: $cameraPosition) {

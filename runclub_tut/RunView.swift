@@ -46,7 +46,10 @@ struct RunView: View {
                     .font(.system(size:64))
                 Text("Time")
                     .foregroundStyle(.gray)
-            }
+            }.padding(.top)
+            AreaMap(cameraPosition: $runTracker.cameraPosition, runTracker:runTracker)
+                .ignoresSafeArea()
+                .frame(height:200)
             .frame(maxHeight: .infinity)
             HStack{
                 Button {

@@ -13,7 +13,7 @@ struct PauseView: View {
     @EnvironmentObject var runTracker: RunTracker
     var body: some View {
         VStack {
-            AreaMap(cameraPosition: $runTracker.cameraPosition)
+            AreaMap(cameraPosition: $runTracker.cameraPosition, runTracker:runTracker)
                 .ignoresSafeArea()
                 .frame(height:300)
             HStack{

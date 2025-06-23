@@ -11,7 +11,7 @@ import Supabase
 struct Table {
     static let workouts = "workouts"
 }
-struct RunPayload: Codable {
+struct RunPayload: Identifiable, Codable {
     var id: Int?
     let createdAt: Date
     var distance: Double
@@ -36,7 +36,8 @@ final class DatabaseService {
     func saveWorkout(run: RunPayload) async throws {
         let _ = try await supabase.from(Table.workouts).insert(run).execute().value
     }
-    func fetchWorkouts() {
+    func fetchWorkouts()  async throws -> [RunPayload] {
+        return try await supabase.from(Table.workouts).select().execute().value
         
     }
 }

@@ -10,6 +10,12 @@
 import SwiftUI
 import MapKit
 
+
+struct IdentifiableCoordinate: Identifiable {
+    let id = UUID()
+    let coordinate: CLLocationCoordinate2D
+}
+
 @MainActor
 class RunTracker: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var isRunning = false
@@ -19,7 +25,7 @@ class RunTracker: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var elapsedTime = 0
     @Published var presentRunView = false
     @Published var presentPauseView = false
-    @Published var locationPath: [CLLocationCoordinate2D] = []
+    @Published var locationPath: [IdentifiableCoordinate] = []
 
     
     private var timer: Timer?
@@ -121,8 +127,8 @@ extension RunTracker {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        let coordinate = location.coordinate
-        locationPath.append(coordinate)
+        let newCoord = IdentifiableCoordinate(coordinate: location.coordinate)
+        locationPath.append(newCoord)
 
         // Update the map camera position
         cameraPosition = .region(
@@ -171,10 +177,36 @@ struct AreaMap: View {
     @Binding var cameraPosition: MapCameraPosition
     @ObservedObject var runTracker: RunTracker
 
-    var body: some View {
-        Map(position: $cameraPosition) {
-            UserAnnotation()
+    var showPath: Bool
+
+    init(cameraPosition: Binding<MapCameraPosition>, runTracker: RunTracker? = nil) {
+        self._cameraPosition = cameraPosition
+        
+        if let tracker = runTracker {
+            self._runTracker = ObservedObject(wrappedValue: tracker)
+            self.showPath = true
+        } else {
+            self._runTracker = ObservedObject(wrappedValue: RunTracker())
+            self.showPath = false
         }
+    }
+    
+    
+    var body: some View {
+        Map(position: $runTracker.cameraPosition) {
+            UserAnnotation()
+            if showPath {
+                //ForEach(runTracker.locationPath) { item in
+                //    Marker("", coordinate: item.coordinate)
+                //}
+            }
+
+            if runTracker.locationPath.count > 1 {
+                MapPolyline(coordinates: runTracker.locationPath.map { $0.coordinate })
+                    .stroke(.blue, lineWidth: 3)
+            }
+        }
+        .ignoresSafeArea()
     }
 }
 

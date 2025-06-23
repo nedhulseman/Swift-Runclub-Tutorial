@@ -22,6 +22,7 @@
 		0FE69DCC2DFB1FEE00F6C7C4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE69DCB2DFB1FEE00F6C7C4 /* AuthService.swift */; };
 		0FE69DD02E044BC200F6C7C4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE69DCF2E044BC200F6C7C4 /* LoginView.swift */; };
 		0FE69DD22E05FF5600F6C7C4 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE69DD12E05FF5600F6C7C4 /* DatabaseService.swift */; };
+		0FE69DD62E09642A00F6C7C4 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE69DD52E09642A00F6C7C4 /* ActivityView.swift */; };
 		0FE7BDA42D2DD21400CC1334 /* RunClubTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE7BDA32D2DD21400CC1334 /* RunClubTabView.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		0FE69DCD2E044B1A00F6C7C4 /* runclub-tut-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "runclub-tut-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0FE69DCF2E044BC200F6C7C4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0FE69DD12E05FF5600F6C7C4 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		0FE69DD52E09642A00F6C7C4 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		0FE7BDA32D2DD21400CC1334 /* RunClubTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunClubTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 		0F15BF172D284F9F003A77FE = {
 			isa = PBXGroup;
 			children = (
+				0FE69DD52E09642A00F6C7C4 /* ActivityView.swift */,
 				0FE69DD12E05FF5600F6C7C4 /* DatabaseService.swift */,
 				0FE69DCE2E044B8700F6C7C4 /* Auth */,
 				0F15BF222D284FA0003A77FE /* runclub_tut */,
@@ -296,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FE69DD62E09642A00F6C7C4 /* ActivityView.swift in Sources */,
 				0FE7BDA42D2DD21400CC1334 /* RunClubTabView.swift in Sources */,
 				0F85480A2D39CA0800DFCD31 /* CountdownView.swift in Sources */,
 				0F85480C2D3C33CD00DFCD31 /* RunView.swift in Sources */,

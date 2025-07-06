@@ -12,7 +12,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         if let session = AuthService.shared.currentSession {
-            HomeView()
+            RunClubTabView()
         } else {
             LoginView()
         }

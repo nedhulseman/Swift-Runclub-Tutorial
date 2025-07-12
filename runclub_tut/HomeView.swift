@@ -113,7 +113,7 @@ class RunTracker: NSObject, ObservableObject, CLLocationManagerDelegate {
         Task {
             do {
                 guard let userId = AuthService.shared.currentSession?.user.id else { return }
-                let run = RunPayload(createdAt: Date.now, distance: self.distance, pace: self.pace, time: self.elapsedTime, userId: userId)
+                let run = RunPayload(createdAt: Date.now, distance: self.distance, pace: self.pace, time: self.elapsedTime, userId: userId, route: ConvertToGeoJson(locations: self.locationPath))
                 try await DatabaseService.shared.saveWorkout(run: run)
             } catch {
                 print(error.localizedDescription)
@@ -170,7 +170,12 @@ extension RunTracker {
     }
 }
     
+
+func ConvertToGeoJson(locations: [IdentifiableCoordinate]) -> [GeoJson] {
+    return locations.map { GeoJson(longitude: $0.coordinate.longitude, latitude: $0.coordinate.latitude)  }
+}
     
+
 // fixing warning, using Stack overflow solution
 // --> https://stackoverflow.com/questions/73813978/model-updates-trigger-publishing-changes-from-within-view-updates-is-not-allowe
 struct AreaMap: View {

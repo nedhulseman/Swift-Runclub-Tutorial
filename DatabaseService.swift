@@ -14,18 +14,27 @@ struct Table {
 struct RunPayload: Identifiable, Codable {
     var id: Int?
     let createdAt: Date
-    var distance: Double
-    var pace: Double
-    var time: Int
-    var userId: UUID
+    let distance: Double
+    let pace: Double
+    let time: Int
+    let userId: UUID
+    let route: [GeoJson]
     
     enum CodingKeys: String, CodingKey {
-        case id, distance, pace, time
+        case id, distance, pace, time, route
         case createdAt = "created_at"
         case userId = "user_id"
     }
     
 }
+
+struct GeoJson:  Codable {
+    var longitude: Double
+    var latitude: Double
+    
+}
+
+
 
 final class DatabaseService {
     static let shared = DatabaseService()

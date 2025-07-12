@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F075CB62E21EDEA004220EC /* SingleActivityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F075CB52E21EDEA004220EC /* SingleActivityItem.swift */; };
+		0F075CB82E21EED1004220EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F075CB72E21EED1004220EC /* Date.swift */; };
 		0F1312402D2B47ED00FB6866 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F13123F2D2B47ED00FB6866 /* HomeView.swift */; };
 		0F15BF242D284FA0003A77FE /* runclub_tutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15BF232D284FA0003A77FE /* runclub_tutApp.swift */; };
 		0F15BF262D284FA0003A77FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15BF252D284FA0003A77FE /* ContentView.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F075CB52E21EDEA004220EC /* SingleActivityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleActivityItem.swift; sourceTree = "<group>"; };
+		0F075CB72E21EED1004220EC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0F13123F2D2B47ED00FB6866 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0F15BF202D284FA0003A77FE /* runclub_tut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = runclub_tut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F15BF232D284FA0003A77FE /* runclub_tutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = runclub_tutApp.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 		0F15BF172D284F9F003A77FE = {
 			isa = PBXGroup;
 			children = (
+				0F075CB72E21EED1004220EC /* Date.swift */,
+				0F075CB52E21EDEA004220EC /* SingleActivityItem.swift */,
 				0FE69DD52E09642A00F6C7C4 /* ActivityView.swift */,
 				0FE69DD12E05FF5600F6C7C4 /* DatabaseService.swift */,
 				0FE69DCE2E044B8700F6C7C4 /* Auth */,
@@ -308,7 +314,9 @@
 				0F15BF262D284FA0003A77FE /* ContentView.swift in Sources */,
 				0FE69DD22E05FF5600F6C7C4 /* DatabaseService.swift in Sources */,
 				0F15BF242D284FA0003A77FE /* runclub_tutApp.swift in Sources */,
+				0F075CB62E21EDEA004220EC /* SingleActivityItem.swift in Sources */,
 				0F20682F2DF9A29F0027633C /* PauseView.swift in Sources */,
+				0F075CB82E21EED1004220EC /* Date.swift in Sources */,
 				0FE69DCC2DFB1FEE00F6C7C4 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

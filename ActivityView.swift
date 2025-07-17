@@ -16,7 +16,7 @@ struct ActivityView: View {
             List {
                 ForEach(activities) { run in
                     NavigationLink {
-                        
+                        SingleActivityView(run: run)
                     } label: {
                         VStack(alignment: .leading) {
                             Text("Morning Run")
@@ -52,6 +52,22 @@ struct ActivityView: View {
             }
             .listStyle(.plain)
             .navigationTitle("Activity")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(role: .destructive){
+                        Task {
+                            do {
+                                try await AuthService.shared.logout()
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                    } label: {
+                        Text("Logout")
+                            .foregroundStyle(.red)
+                    }
+                }
+            }
             .onAppear {
                 Task {
                     do {

@@ -11,6 +11,11 @@ struct LoginView: View {
     @State var email = ""
     var body: some View {
         VStack{
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(height:400)
+                .clipShape(Circle())
             TextField("E-mail", text:$email)
                 .bold()
                 .padding()

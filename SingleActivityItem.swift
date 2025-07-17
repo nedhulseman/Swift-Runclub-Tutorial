@@ -39,7 +39,8 @@ struct SingleActivityView: View {
             }
             .padding()
             Map {
-                MapPolygon(coordinates: convertRouteToCoordinate(geoJson: run.route))
+                MapPolyline(coordinates: convertRouteToCoordinate(geoJson: run.route))
+                    .stroke(.yellow, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
             }
         }
         .frame(maxWidth:.infinity, maxHeight: .infinity, alignment: .leading)
